@@ -1,0 +1,269 @@
+---
+title: "Formula 1 Fanatics"
+subtitle: "Formula 1: Analyzing F1 Beyond the Track"
+author: 
+- "Rachel Lin"
+- "Sam Ramirez"
+- "Nabiha Tahsin"
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+# Improve digit display and NA display for kable tables
+options(scipen = 1, knitr.kable.NA = "")
+
+# Load necessary packages
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(robotstxt)
+library(plotly)
+library(viridis)
+```
+
+```{r}
+#| fig-cap: "Image courtesy of giphy.com"
+#| fig-align: center
+#| out-width: 100%
+
+include_graphics("images/f1_coverimg.jpg")
+```
+
+
+## Introduction
+Our blog delves into the world of Formula 1 (F1), the pinnacle of international racing, by offering a fun and interactive take on its analytics. We explore the sport’s rich history and performance from years 1950-2024 through visualizations, including word clouds, network graphs, and interactive maps. This is for both F1 enthusiasts and curious newcomers alike!
+
+### Purpose: 
+
+### Background & Data:
+
+## Grand Prix Circuits
+
+```{r}
+#| label: grand-prix-map
+#| fig-cap: "Locations of Grand Prix circuits from 1950-2024"
+
+library(leaflet)
+load("data/circuits.RData")
+
+# Add custom pin marker : https://r-charts.com/spatial/interactive-maps-leaflet/ (source)
+icons_list <- icons(iconUrl = "https://raw.githubusercontent.com/R-CoderDotCom/chinchet/main/inst/red.png",
+                    iconWidth = 50, 
+                    iconHeight = 50)
+max_races <- max(circuits$num_races)
+interval <- max_races / 5
+
+# custom palette resembling F1 colors
+pal <- colorBin(
+  palette = c('palevioletred1', 
+              'orange','red1', 
+              'steelblue1', 
+              'navyblue'),
+  domain = circuits$num_races,
+  # 5 different ranges of num races
+  bins = c(1, interval, interval * 2, 
+           interval * 3, interval * 4,
+           max_races)
+)
+
+leaflet(circuits) |> 
+  addTiles(group = "Default Map View") |>
+  addProviderTiles(providers$Esri.WorldImagery, 
+                   group = "Satellite Map View") |>
+  # popup from https://rstudio.github.io/leaflet/articles/popups.html
+  addCircleMarkers(
+    lng = ~lng,
+    lat = ~lat,
+    radius = ~sqrt(num_races) * 2,
+    color = ~pal(num_races),
+    stroke = FALSE, 
+    fillOpacity = 0.85,
+    popup = ~paste0("<strong>", location, "<strong>",
+                             "<strong><br>Number of Races: ", num_races),
+    group = "Number of Races" # group for hide/show layers
+    ) |>
+  addMarkers(lng = ~lng,
+             lat = ~lat,
+             popup = ~paste0("<strong>", location, "<strong>"),
+             group = "Location Pins", # group for hide/show layers
+             icon = icons_list) |>
+  # hide/show layers : https://rstudio.github.io/leaflet/articles/showhide.html
+  addLayersControl(
+    baseGroups = c("Default Map View", 
+                   "Satellite Map View"),
+    overlayGroups = c("Number of Races",
+                      "Location Pins"),
+    options = layersControlOptions(collapsed = FALSE)
+  ) |>
+  hideGroup("Number of Races") |>
+  addMiniMap(width = 150, height = 150) |>
+  setView(lat = 33.5786,
+          lng = -7.6875,
+          zoom = 2)  
+
+```
+
+
+# Quarto website features
+
+
+
+
+## Including images or gifs
+
+
+
+## Panel tabsets
+
+Use the following format to add information or tables or visualizations in [tabset panels](https://quarto.org/docs/interactive/layout.html#tabset-panel).
+
+::: {.panel-tabset}
+
+### Top F1 Teams
+
+```{r}
+#| label: constructor-wins
+#| fig-cap: "F1 Team Podiums (1st - 3rd) and Wins (1st) since 1950"
+#| fig-height: 6
+#| fig-width: 7
+
+load("data/team_podiums.RData")
+
+podium_fig <- plot_ly(
+  data = podiums,
+  x = ~total_wins,
+  y = ~reorder(name, total_podiums),
+  type = "bar",
+  name = "Total Wins",
+  marker = list(color = "gold"),
+  hoverinfo = "text",
+  text = ~paste(total_wins) 
+) |>
+  add_trace(
+    x = ~total_podiums - total_wins,
+    y = ~reorder(name, total_podiums),
+    type = "bar",
+    name = "Total Podiums",
+    marker = list(color = "blue"),
+    text = ~paste(total_podiums)) |>
+  layout(
+    title = "Top 10 F1 Teams (Constructors) since 1950: Total Podiums and Wins",
+    xaxis = list(title = "Total Podiums/Wins"),
+    yaxis = list(title = "Constructor"))
+
+
+podium_fig
+
+```
+
+
+### Tab 2
+
+Some information in a different tab
+
+:::
+
+## Word Cloud for Formula 1 Grands Prix
+
+In this section, you can take a look at six word clouds representing six different Grands Prix from various parts of the world. Looking at the word clouds gives us some insight about each of the races
+
+*Wrangling*: The words cloud were generated using the text body in the Wikipedia page for each race. As necessary, stop words, digits and other irrelevant words were removed using the *tidytext* and *stringr* packages. The more frequent the word, the bigger they appear.
+
+*Interpretation*: These word clouds are not simply visual decorations: we can learn a lot of key information about the races by observing the words highlighted in the word cloud. For example, all of these word clouds include the names of F1 racers who performed well during the Grands Prix, such as Hamilton's name appearing the word cloud for the Abu Dhabi Grand Prix where he scored the fastest lap as well as became the runner up. Most of these word clouds also reveal the location of the Grands Prix. For example, for the United States Grand Prix West, the races took place in Queen's Hairpin and Long Beach, both of which appear in the word cloud. 
+
+Last but not least, in these word clouds, some words stick out and reveals some very interesting, surprising or unique facts about the Grands Prix. For example, in the word cloud for Bahrain Grand Prix, the words 'protest', 'human rights' and 'cancelled' are conspicuous. It turns out, during the 2012 races held in Bahrain for the Grand Prix, there were many protests held for the violation of human rights in detention centers, so some races had to be cancelled.
+
+As such, word clouds are a fun and engaging way to introduce newcomers to the world of Formula 1!
+
+::: {.panel-tabset}
+
+### Top F1 Teams
+
+The syntax "[ [1], [1,1] ]" indicates that we have three pieces of content that we want to spread across two rows. The first piece of content will be in its own row, and then the next two components will be split across two columns of equal width in a second row. 
+
+
+::: {layout="[ [1], [1,1] ]"}
+
+### Row 1 with only one output
+
+Some content
+
+
+### First column of row 2
+
+Some other content
+
+### Second column of row 2
+
+Some additional content.
+
+:::
+
+The values provided within each row specify the relative widths of the content within that row. For example "[1,2,1]" would create a row with 3 columns where the first and third columns are the same width and the middle column is twice as wide.
+
+Headings are not required to indicate the start of a new component. The linked section, for example, shows the use of custom layouts for a series of imported figures. [Block layouts](https://quarto.org/docs/authoring/figures.html#block-layout) provide alternative ways to divvy up content.
+
+
+
+
+## Layouts for tables and visualizations produced by code chunks
+
+For details on how to layout subfigures from multiple graphs produced by the same code chunk, see the examples in the **Knitr** tabs of the sections on [figure layouts, subcaptions, and custom layouts](https://quarto.org/docs/authoring/figures.html#layout).
+
+The same syntax shown across the linked examples can be used to create subtables by replacing `fig-cap` and `fig-subcap` with `tbl-cap` and `tbl-subcap`. 
+
+Two examples in @tbl-layout and @fig-layout below are borrowed and slightly modified from the linked sections. 
+
+```{r}
+#| label: tbl-layout
+#| tbl-cap: "Two tables side-by-side"
+#| tbl-subcap: 
+#|   - "First three rows of cars dataset"
+#|   - "First three rows of pressure dataset"
+#| layout-ncol: 2
+
+cars |> 
+  slice(1:3) |> 
+  kable()
+
+pressure |> 
+  slice(1:3) |> 
+  kable()
+```
+
+
+```{r}
+#| label: fig-layout
+#| fig-cap: "Three figures in a complex layout"
+#| fig-subcap: 
+#|   - "cars"
+#|   - "pressure"
+#|   - "mtcars"
+#| layout: [[4, -1, 4], [1]] 
+
+ggplot(cars, aes(speed, dist)) +
+  geom_point()
+
+ggplot(pressure, aes(temperature, pressure)) +
+  geom_point()
+
+ggplot(mtcars, aes(hp, mpg)) +
+  geom_point()
+```
+
+
+
+
+
+
+<!-- 
+You can edit the name of the following heading (e.g. "Resources", "Bibliography", "Works cited") but do not otherwise delete or modify the following lines
+-->
+
+# References {#sec-references}
+
+::: {#refs}
+:::
+

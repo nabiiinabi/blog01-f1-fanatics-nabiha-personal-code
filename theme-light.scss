@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/*-- scss:defaults --*/
+// Base document colors
+$body-color: #15151E;
+$primary: #b32b2f;
+$body-font: Helvetica, sans-serif;
+$header-font: 'Georgia', serif; 
+$navbar-font: 'Quantico', sans-serif;
+
+.navbar-brand, h1, h2, h3, h4, h5, h6, .navbar-nav .nav-link, .dropdown-item {
+  font-family: $navbar-font !important;
+}
+
+// Code blocks
+$code-block-bg-alpha: -.8;

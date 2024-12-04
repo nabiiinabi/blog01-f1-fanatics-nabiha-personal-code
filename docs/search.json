@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "yet-another-page.html",
+    "href": "yet-another-page.html",
+    "title": "Formula 1 Blog Project",
+    "section": "",
+    "text": "This is yet another page that can be linked! You are not required to include more than just index.qmd, but you are welcome to make content on different pages, if desired. This may help with managing GitHub commits, as well."
+  },
+  {
+    "objectID": "yet-another-page.html#sec-note",
+    "href": "yet-another-page.html#sec-note",
+    "title": "Formula 1 Blog Project",
+    "section": "A note",
+    "text": "A note\nNotice that you can also modify the YAML headings at the top of each page as I did in the first subpage or completely delete them, as I did here."
+  },
+  {
+    "objectID": "another-page.html",
+    "href": "another-page.html",
+    "title": "Network Page",
+    "section": "",
+    "text": "This is just another page that can be linked! You are not required to include more than just index.qmd, but you are welcome to make content on different pages, if desired. This may help with managing GitHub commits, as well.\n\n\n── Nodes ───────────────────────────────────────────────────────────────────────\n\n\nRows: 131\nColumns: 1\n$ name &lt;chr&gt; \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\", \"12\", \"1…\n\n\n── Edges ───────────────────────────────────────────────────────────────────────\n\n\nRows: 1,125\nColumns: 7\n$ from         &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …\n$ to           &lt;int&gt; 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 7…\n$ circuit_name &lt;chr&gt; \"Albert Park Grand Prix Circuit\", \"Albert Park Grand Prix…\n$ location     &lt;chr&gt; \"Melbourne\", \"Melbourne\", \"Melbourne\", \"Melbourne\", \"Melb…\n$ country      &lt;chr&gt; \"Australia\", \"Australia\", \"Australia\", \"Australia\", \"Aust…\n$ year         &lt;dbl&gt; 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 200…\n$ date         &lt;date&gt; 1996-03-10, 1997-03-09, 1998-03-08, 1999-03-07, 2000-03-…\n\n\n\n\n\n\nReferences\n\nCODER, R. (2024), R CHARTS: Interactive maps with leaflet in r.\n\n\nPatrik_P (2017), “Creating a leaflet map with custom labels in r,” Stack Overflow, Forum post, Available at https://stackoverflow.com/questions/45538831/creating-a-leaflet-map-with-custom-labels-in-r."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Formula 1 Fanatics",
+    "section": "",
+    "text": "Image courtesy of giphy.com"
+  },
+  {
+    "objectID": "index.html#introduction",
+    "href": "index.html#introduction",
+    "title": "Formula 1 Fanatics",
+    "section": "Introduction",
+    "text": "Introduction\nOur blog delves into the world of Formula 1 (F1), the pinnacle of international racing, by offering a fun and interactive take on its analytics. We explore the sport’s rich history and performance from years 1950-2024 through visualizations, including word clouds, network graphs, and interactive maps. This is for both F1 enthusiasts and curious newcomers alike!\n\nPurpose:\n\n\nBackground & Data:"
+  },
+  {
+    "objectID": "index.html#grand-prix-circuits",
+    "href": "index.html#grand-prix-circuits",
+    "title": "Formula 1 Fanatics",
+    "section": "Grand Prix Circuits",
+    "text": "Grand Prix Circuits\n\n\n\n\nLocations of Grand Prix circuits from 1950-2024"
+  },
+  {
+    "objectID": "index.html#including-images-or-gifs",
+    "href": "index.html#including-images-or-gifs",
+    "title": "Formula 1 Fanatics",
+    "section": "Including images or gifs",
+    "text": "Including images or gifs"
+  },
+  {
+    "objectID": "index.html#panel-tabsets",
+    "href": "index.html#panel-tabsets",
+    "title": "Formula 1 Fanatics",
+    "section": "Panel tabsets",
+    "text": "Panel tabsets\nUse the following format to add information or tables or visualizations in tabset panels.\n\nTop F1 TeamsTab 2\n\n\n\n\n\n\nF1 Team Podiums (1st - 3rd) and Wins (1st) since 1950\n\n\n\n\nSome information in a different tab"
+  },
+  {
+    "objectID": "index.html#word-cloud-for-formula-1-grands-prix",
+    "href": "index.html#word-cloud-for-formula-1-grands-prix",
+    "title": "Formula 1 Fanatics",
+    "section": "Word Cloud for Formula 1 Grands Prix",
+    "text": "Word Cloud for Formula 1 Grands Prix\nIn this section, you can take a look at six word clouds representing six different Grands Prix from various parts of the world. Looking at the word clouds gives us some insight about each of the races\nWrangling: The words cloud were generated using the text body in the Wikipedia page for each race. As necessary, stop words, digits and other irrelevant words were removed using the tidytext and stringr packages. The more frequent the word, the bigger they appear.\nInterpretation: These word clouds are not simply visual decorations: we can learn a lot of key information about the races by observing the words highlighted in the word cloud. For example, all of these word clouds include the names of F1 racers who performed well during the Grands Prix, such as Hamilton’s name appearing the word cloud for the Abu Dhabi Grand Prix where he scored the fastest lap as well as became the runner up. Most of these word clouds also reveal the location of the Grands Prix. For example, for the United States Grand Prix West, the races took place in Queen’s Hairpin and Long Beach, both of which appear in the word cloud.\nLast but not least, in these word clouds, some words stick out and reveals some very interesting, surprising or unique facts about the Grands Prix. For example, in the word cloud for Bahrain Grand Prix, the words ‘protest’, ‘human rights’ and ‘cancelled’ are conspicuous. It turns out, during the 2012 races held in Bahrain for the Grand Prix, there were many protests held for the violation of human rights in detention centers, so some races had to be cancelled.\nAs such, word clouds are a fun and engaging way to introduce newcomers to the world of Formula 1!\n::: {.panel-tabset}\n\nTop F1 Teams\nThe syntax “[ [1], [1,1] ]” indicates that we have three pieces of content that we want to spread across two rows. The first piece of content will be in its own row, and then the next two components will be split across two columns of equal width in a second row.\n\n\n\n\n\n\n\nRow 1 with only one output\nSome content\n\n\n\n\nFirst column of row 2\nSome other content\n\n\nSecond column of row 2\nSome additional content.\n\n\n\nThe values provided within each row specify the relative widths of the content within that row. For example “[1,2,1]” would create a row with 3 columns where the first and third columns are the same width and the middle column is twice as wide.\nHeadings are not required to indicate the start of a new component. The linked section, for example, shows the use of custom layouts for a series of imported figures. Block layouts provide alternative ways to divvy up content."
+  },
+  {
+    "objectID": "index.html#layouts-for-tables-and-visualizations-produced-by-code-chunks",
+    "href": "index.html#layouts-for-tables-and-visualizations-produced-by-code-chunks",
+    "title": "Formula 1 Fanatics",
+    "section": "Layouts for tables and visualizations produced by code chunks",
+    "text": "Layouts for tables and visualizations produced by code chunks\nFor details on how to layout subfigures from multiple graphs produced by the same code chunk, see the examples in the Knitr tabs of the sections on figure layouts, subcaptions, and custom layouts.\nThe same syntax shown across the linked examples can be used to create subtables by replacing fig-cap and fig-subcap with tbl-cap and tbl-subcap.\nTwo examples in Table 1 and Figure 1 below are borrowed and slightly modified from the linked sections.\n\n\n\nTable 1: Two tables side-by-side\n\n\n\n\n\n\n\n(a) First three rows of cars dataset\n\n\n\n\n\nspeed\ndist\n\n\n\n\n4\n2\n\n\n4\n10\n\n\n7\n4\n\n\n\n\n\n\n\n\n\n\n\n(b) First three rows of pressure dataset\n\n\n\n\n\ntemperature\npressure\n\n\n\n\n0\n0.0002\n\n\n20\n0.0012\n\n\n40\n0.0060\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n(a) cars\n\n\n\n\n\n \n\n\n\n\n\n\n\n\n(b) pressure\n\n\n\n\n\n\n\n\n\n\n\n\n\n(c) mtcars\n\n\n\n\n\n\n\nFigure 1: Three figures in a complex layout"
+  }
+]
