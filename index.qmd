@@ -165,21 +165,9 @@ Some information in a different tab
 
 :::
 
-## Word Cloud for Formula 1 Grands Prix
+## Panel layouts for content
 
-In this section, you can take a look at six word clouds representing six different Grands Prix from various parts of the world. Looking at the word clouds gives us some insight about each of the races
-
-*Wrangling*: The words cloud were generated using the text body in the Wikipedia page for each race. As necessary, stop words, digits and other irrelevant words were removed using the *tidytext* and *stringr* packages. The more frequent the word, the bigger they appear.
-
-*Interpretation*: These word clouds are not simply visual decorations: we can learn a lot of key information about the races by observing the words highlighted in the word cloud. For example, all of these word clouds include the names of F1 racers who performed well during the Grands Prix, such as Hamilton's name appearing the word cloud for the Abu Dhabi Grand Prix where he scored the fastest lap as well as became the runner up. Most of these word clouds also reveal the location of the Grands Prix. For example, for the United States Grand Prix West, the races took place in Queen's Hairpin and Long Beach, both of which appear in the word cloud. 
-
-Last but not least, in these word clouds, some words stick out and reveals some very interesting, surprising or unique facts about the Grands Prix. For example, in the word cloud for Bahrain Grand Prix, the words 'protest', 'human rights' and 'cancelled' are conspicuous. It turns out, during the 2012 races held in Bahrain for the Grand Prix, there were many protests held for the violation of human rights in detention centers, so some races had to be cancelled.
-
-As such, word clouds are a fun and engaging way to introduce newcomers to the world of Formula 1!
-
-::: {.panel-tabset}
-
-### Top F1 Teams
+Use the following format to have more control over the [panel layout](https://quarto.org/docs/authoring/figures.html#complex-layouts) of various components. 
 
 The syntax "[ [1], [1,1] ]" indicates that we have three pieces of content that we want to spread across two rows. The first piece of content will be in its own row, and then the next two components will be split across two columns of equal width in a second row. 
 

@@ -1,7 +1,171 @@
+---
+title: "Word Cloud for F1 Grands Prix"
+author: "Nabiha Tahsin"
+---
+Explore five word clouds representing different Grands Prix across the globe and learn insights into some of the iconic races in F1!
 
-This is *yet* another page that can be linked! You are not required to include more than just *index.qmd*, but you are welcome to make content on different pages, if desired. This may help with managing GitHub commits, as well. 
+## Wrangling
 
-## A note {#sec-note} 
+The word clouds were created using text from Wikipedia pages for each race. With the help of the *tidytext* and *stringr* packages, irrelevant words, digits, and stop words were removed. The larger a word appears, the more frequently it was mentioned.
 
-Notice that you can also modify the YAML headings at the top of each page as I did in the [first subpage](another-page.qmd) or completely delete them, as I did here.
+## Interpretation 
 
+These word clouds are not simply pretty visuals—they reveal to us key information about the races. Observe the word clouds and learn some interesting facts about each of the races below.
+
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+# Load necessary packages
+library(rvest)
+library(tidyverse)
+library(tidytext)
+library(ggwordcloud)
+library(viridis)
+
+# Custom F1-themed palette
+f1_palette <- c('palevioletred1', 
+                'orange', 
+                'red1', 
+                'steelblue1', 
+                'navyblue')
+
+# Load dataset made from web scraping and data cleaning
+load("data/race_data.RData")
+```
+
+### 70th Anniversary Grand Prix
+
+```{r}
+#| label: wordcloud-70th-anniversary
+#| echo: false
+#| message: false
+
+i <- 1  # 70th Anniversary Grand Prix
+top_words = race_data$TopWords[[i]]
+set.seed(53)
+angles45 <- sample(45 * -2:2, nrow(top_words), replace = TRUE, prob = c(0.2, 0.1, 0.4, 0.1, 0.2))
+
+# Create the word cloud
+ggplot(top_words, aes(label = word, size = n, color = color_group, angle = angles45)) +
+  geom_text_wordcloud(seed = 53, shape = "triangle-upright", eccentricity = 0.8) +
+  scale_size_area(max_size = 15) +
+  scale_color_identity() +
+  theme_minimal() +  
+  theme(plot.caption = element_text(size = 16, face = "bold")) +
+  labs(caption = "Word Cloud: 70th Anniversary Grand Prix")
+```
+
+In this word cloud, **'hamilton'**, **'bottas'**, **'mercedes'**, **'verstappen'**, **'tyre'** and **'compound'** are some words that catch the eye and tell the story of the 70th Anniversary Grand Prix. **Hamilton**, **Bottas** and **Verstappen** are prominent F1 drivers who featured in battles in this Grand Prix. Interestingly, the two **Mercedes** drivers, **Hamilton** and **Bottas**, faced **tyre** overheating and blistering, which allowed **Max Verstappen** to capitalize on a superior strategy and win on harder **compounds**. 
+
+### United States Grand Prix West (1979)
+
+```{r}
+#| label: wordcloud-usgp-west
+#| echo: false
+#| message: false
+
+i <- 54  # United States Grand Prix West
+top_words = race_data$TopWords[[i]]
+set.seed(53)
+angles45 <- sample(45 * -2:2, nrow(top_words), replace = TRUE, prob = c(0.2, 0.1, 0.4, 0.1, 0.2))
+
+# Create the word cloud
+ggplot(top_words, aes(label = word, size = n, color = color_group, angle = angles45)) +
+  geom_text_wordcloud(seed = 53, shape = "triangle-upright", eccentricity = 0.8) +
+  scale_size_area(max_size = 15) +
+  scale_color_identity() +
+  theme_minimal() +  
+  theme(plot.caption = element_text(size = 16, face = "bold")) +
+  labs(caption = "Word Cloud: United States Grand Prix West (1979)")
+
+```
+
+
+In the word cloud for the 1979 United States Grand Prix West, terms like **'beach'**, **'hairpin'**, **'villeneuve'**, and **'lauda'** stand out. The event took place on the streets of **Long Beach**, California, directly referenced by the term **'beach'**. The circuit featured the challenging **Queen's Hairpin**, which also featured in the word cloud. The word **'villeneuve'** and **'ferrari'** point to **Ferrari** driver **Gilles Villeneuve**, who became an important figure in this Grand Prix by securing pole position, recording the fastest lap, and winning the race. The mention of **'lauda'** refers to **Niki Lauda**, a two-time World Champion by that year.
+
+### Caesars Palace Grand Prix
+
+```{r}
+#| label: wordcloud-caesars-palace
+#| echo: false
+#| message: false
+
+i <- 11  # Caesars Palace Grand Prix
+top_words = race_data$TopWords[[i]]
+set.seed(53)
+angles45 <- sample(45 * -2:2, nrow(top_words), replace = TRUE, prob = c(0.2, 0.1, 0.4, 0.1, 0.2))
+
+# Create the word cloud
+ggplot(top_words, aes(label = word, size = n, color = color_group, angle = angles45)) +
+  geom_text_wordcloud(seed = 53, shape = "triangle-upright", eccentricity = 0.8) +
+  scale_size_area(max_size = 15) +
+  scale_color_identity() +
+  theme_minimal() +  
+  theme(plot.caption = element_text(size = 16, face = "bold")) +
+  labs(caption = "Word Cloud: Caesars Palace Grand Prix")
+
+```
+
+
+In this word cloud, terms like **'las vegas'**, **'palace'**, **'parking'**, and **'heat'** define the unique setting of the **Caesars Palace Grand Prix**. The race was held in the **parking lot** of the **Caesars Palace Hotel** in **Las Vegas**, a distinctive and unconventional venue for Formula 1. The **heat** and flat circuit layout presented challenges for drivers, making it one of the more unusual races in F1 history. Despite its unique appeal, it remains a curiosity in the sport's timeline.
+
+### Argentine Grand Prix
+
+
+```{r}
+#| label: wordcloud-argentina
+#| echo: false
+#| message: false
+
+i <- 3  # Argentine Grand Prix
+top_words = race_data$TopWords[[i]]
+set.seed(53)
+angles45 <- sample(45 * -2:2, nrow(top_words), replace = TRUE, prob = c(0.2, 0.1, 0.4, 0.1, 0.2))
+
+# Create the word cloud
+ggplot(top_words, aes(label = word, size = n, color = color_group, angle = angles45)) +
+  geom_text_wordcloud(seed = 53, shape = "triangle-upright", eccentricity = 0.8) +
+  scale_size_area(max_size = 15) +
+  scale_color_identity() +
+  theme_minimal() +  
+  theme(plot.caption = element_text(size = 16, face = "bold")) +
+  labs(caption = "Word Cloud: Bahrain Grand Prix")
+
+```
+
+In this word cloud, words like **'argentine'**, **'victory'**, **'reutemann'**, and **'buenos aires'** tell the story of the Argentine Grand Prix. The race was held in Buenos Aires, as highlighted by the location name. **Carlos Reutemann**, the Argentinian driver, stands out as a key figure, securing a notable victory on home soil, bringing immense pride to the local fans. The layout of the circuit, known for its challenging **'corners'** and configurations, is another defining feature of this event.
+
+### Bahrain Grand Prix
+
+```{r}
+#| label: wordcloud-bahrain
+#| echo: false
+#| message: false
+
+i <- 7  # Bahrain Grand Prix
+top_words = race_data$TopWords[[i]]
+set.seed(53)
+angles45 <- sample(45 * -2:2, nrow(top_words), replace = TRUE, prob = c(0.2, 0.1, 0.4, 0.1, 0.2))
+
+# Create the word cloud
+ggplot(top_words, aes(label = word, size = n, color = color_group, angle = angles45)) +
+  geom_text_wordcloud(seed = 53, shape = "triangle-upright", eccentricity = 0.8) +
+  scale_size_area(max_size = 20) +
+  scale_color_identity() +
+  theme_minimal() +
+  theme(plot.caption = element_text(size = 16, face = "bold")) +
+  labs(caption = "Word Cloud: Bahrain Grand Prix")
+
+
+```
+
+The words **'bahrain'**, **'human rights'**, **'protests'**, and **'cancelled'** paint a vivid picture of the controversy surrounding this event. The Grand Prix, held at the Bahrain International Circuit, faced criticism and disruptions due to protests about human rights violations in the region. Many races were also **cancelled** due to the **protests**. This Grand Prix is remembered for its political and social backdrop as much as its racing.
+
+---
+
+As seen above, word clouds reveal a great deal of significant information about the races in these Grands Prix, including the name of key drivers (such as **'Hamilton'**, **'Lauda'** and **'Verstappen'**), the type of car they competed with (**'Ferrari'**, **'Mercedes'**, etc.), the name and nature of the location (**'beach'**, **'heat'**, etc.) and controversies and incidents during the Grands Prix (**'protests'**, **'crash'**, etc.).
+
+Word clouds are a fun and engaging way to introduce newcomers to the world of Formula 1!

@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-11-14">
+<meta name="author" content="Nabiha Tahsin">
+<meta name="dcterms.date" content="2024-12-04">
 
-<title>Formula 1 Blog Project</title>
+<title>Formula 1 Blog Project - Word Cloud for F1 Grands Prix</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -143,7 +144,15 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#sec-note" id="toc-sec-note" class="nav-link active" data-scroll-target="#sec-note">A note</a></li>
+  <li><a href="#wrangling" id="toc-wrangling" class="nav-link active" data-scroll-target="#wrangling">Wrangling</a></li>
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation">Interpretation</a>
+  <ul class="collapse">
+  <li><a href="#th-anniversary-grand-prix" id="toc-th-anniversary-grand-prix" class="nav-link" data-scroll-target="#th-anniversary-grand-prix">70th Anniversary Grand Prix</a></li>
+  <li><a href="#united-states-grand-prix-west-1979" id="toc-united-states-grand-prix-west-1979" class="nav-link" data-scroll-target="#united-states-grand-prix-west-1979">United States Grand Prix West (1979)</a></li>
+  <li><a href="#caesars-palace-grand-prix" id="toc-caesars-palace-grand-prix" class="nav-link" data-scroll-target="#caesars-palace-grand-prix">Caesars Palace Grand Prix</a></li>
+  <li><a href="#argentine-grand-prix" id="toc-argentine-grand-prix" class="nav-link" data-scroll-target="#argentine-grand-prix">Argentine Grand Prix</a></li>
+  <li><a href="#bahrain-grand-prix" id="toc-bahrain-grand-prix" class="nav-link" data-scroll-target="#bahrain-grand-prix">Bahrain Grand Prix</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -152,17 +161,24 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
+<h1 class="title">Word Cloud for F1 Grands Prix</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Nabiha Tahsin </p>
+          </div>
+  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Last updated</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 14, 2024</p>
+      <p class="date">December 4, 2024</p>
     </div>
   </div>
   
@@ -174,13 +190,86 @@ div.csl-indent {
 </header>
 
 
-<p>This is <em>yet</em> another page that can be linked! You are not required to include more than just <em>index.qmd</em>, but you are welcome to make content on different pages, if desired. This may help with managing GitHub commits, as well.</p>
-<section id="sec-note" class="level2">
-<h2 class="anchored" data-anchor-id="sec-note">A note</h2>
-<p>Notice that you can also modify the YAML headings at the top of each page as I did in the <a href="./another-page.html">first subpage</a> or completely delete them, as I did here.</p>
+<p>Explore five word clouds representing different Grands Prix across the globe and learn insights into some of the iconic races in F1!</p>
+<section id="wrangling" class="level2">
+<h2 class="anchored" data-anchor-id="wrangling">Wrangling</h2>
+<p>The word clouds were created using text from Wikipedia pages for each race. With the help of the <em>tidytext</em> and <em>stringr</em> packages, irrelevant words, digits, and stop words were removed. The larger a word appears, the more frequently it was mentioned.</p>
+</section>
+<section id="interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation">Interpretation</h2>
+<p>These word clouds are not simply pretty visuals—they reveal to us key information about the races. Observe the word clouds and learn some interesting facts about each of the races below.</p>
+<hr>
+<section id="th-anniversary-grand-prix" class="level3">
+<h3 class="anchored" data-anchor-id="th-anniversary-grand-prix">70th Anniversary Grand Prix</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="yet-another-page_files/figure-html/wordcloud-70th-anniversary-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In this word cloud, <strong>‘hamilton’</strong>, <strong>‘bottas’</strong>, <strong>‘mercedes’</strong>, <strong>‘verstappen’</strong>, <strong>‘tyre’</strong> and <strong>‘compound’</strong> are some words that catch the eye and tell the story of the 70th Anniversary Grand Prix. <strong>Hamilton</strong>, <strong>Bottas</strong> and <strong>Verstappen</strong> are prominent F1 drivers who featured in battles in this Grand Prix. Interestingly, the two <strong>Mercedes</strong> drivers, <strong>Hamilton</strong> and <strong>Bottas</strong>, faced <strong>tyre</strong> overheating and blistering, which allowed <strong>Max Verstappen</strong> to capitalize on a superior strategy and win on harder <strong>compounds</strong>.</p>
+</section>
+<section id="united-states-grand-prix-west-1979" class="level3">
+<h3 class="anchored" data-anchor-id="united-states-grand-prix-west-1979">United States Grand Prix West (1979)</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="yet-another-page_files/figure-html/wordcloud-usgp-west-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In the word cloud for the 1979 United States Grand Prix West, terms like <strong>‘beach’</strong>, <strong>‘hairpin’</strong>, <strong>‘villeneuve’</strong>, and <strong>‘lauda’</strong> stand out. The event took place on the streets of <strong>Long Beach</strong>, California, directly referenced by the term <strong>‘beach’</strong>. The circuit featured the challenging <strong>Queen’s Hairpin</strong>, which also featured in the word cloud. The word <strong>‘villeneuve’</strong> and <strong>‘ferrari’</strong> point to <strong>Ferrari</strong> driver <strong>Gilles Villeneuve</strong>, who became an important figure in this Grand Prix by securing pole position, recording the fastest lap, and winning the race. The mention of <strong>‘lauda’</strong> refers to <strong>Niki Lauda</strong>, a two-time World Champion by that year.</p>
+</section>
+<section id="caesars-palace-grand-prix" class="level3">
+<h3 class="anchored" data-anchor-id="caesars-palace-grand-prix">Caesars Palace Grand Prix</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="yet-another-page_files/figure-html/wordcloud-caesars-palace-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In this word cloud, terms like <strong>‘las vegas’</strong>, <strong>‘palace’</strong>, <strong>‘parking’</strong>, and <strong>‘heat’</strong> define the unique setting of the <strong>Caesars Palace Grand Prix</strong>. The race was held in the <strong>parking lot</strong> of the <strong>Caesars Palace Hotel</strong> in <strong>Las Vegas</strong>, a distinctive and unconventional venue for Formula 1. The <strong>heat</strong> and flat circuit layout presented challenges for drivers, making it one of the more unusual races in F1 history. Despite its unique appeal, it remains a curiosity in the sport’s timeline.</p>
+</section>
+<section id="argentine-grand-prix" class="level3">
+<h3 class="anchored" data-anchor-id="argentine-grand-prix">Argentine Grand Prix</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="yet-another-page_files/figure-html/wordcloud-argentina-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In this word cloud, words like <strong>‘argentine’</strong>, <strong>‘victory’</strong>, <strong>‘reutemann’</strong>, and <strong>‘buenos aires’</strong> tell the story of the Argentine Grand Prix. The race was held in Buenos Aires, as highlighted by the location name. <strong>Carlos Reutemann</strong>, the Argentinian driver, stands out as a key figure, securing a notable victory on home soil, bringing immense pride to the local fans. The layout of the circuit, known for its challenging <strong>‘corners’</strong> and configurations, is another defining feature of this event.</p>
+</section>
+<section id="bahrain-grand-prix" class="level3">
+<h3 class="anchored" data-anchor-id="bahrain-grand-prix">Bahrain Grand Prix</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="yet-another-page_files/figure-html/wordcloud-bahrain-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The words <strong>‘bahrain’</strong>, <strong>‘human rights’</strong>, <strong>‘protests’</strong>, and <strong>‘cancelled’</strong> paint a vivid picture of the controversy surrounding this event. The Grand Prix, held at the Bahrain International Circuit, faced criticism and disruptions due to protests about human rights violations in the region. Many races were also <strong>cancelled</strong> due to the <strong>protests</strong>. This Grand Prix is remembered for its political and social backdrop as much as its racing.</p>
+<hr>
+<p>As seen above, word clouds reveal a great deal of significant information about the races in these Grands Prix, including the name of key drivers (such as <strong>‘Hamilton’</strong>, <strong>‘Lauda’</strong> and <strong>‘Verstappen’</strong>), the type of car they competed with (<strong>‘Ferrari’</strong>, <strong>‘Mercedes’</strong>, etc.), the name and nature of the location (<strong>‘beach’</strong>, <strong>‘heat’</strong>, etc.) and controversies and incidents during the Grands Prix (<strong>‘protests’</strong>, <strong>‘crash’</strong>, etc.).</p>
+<p>Word clouds are a fun and engaging way to introduce newcomers to the world of Formula 1!</p>
 
 
 
+</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">

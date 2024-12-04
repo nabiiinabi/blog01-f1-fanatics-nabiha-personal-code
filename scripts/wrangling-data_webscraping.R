@@ -2,9 +2,8 @@
 library(rvest)
 library(tidyverse)
 library(tidytext)
-library(ggwordcloud)
-library(viridis)
 
+# Web scraping from Wikipedia ==================================================
 
 # Defining the URL
 url <- "https://en.wikipedia.org/wiki/List_of_Formula_One_Grands_Prix#By_race_title"
@@ -20,7 +19,7 @@ race_table <- webpage |>
 # Extract race titles and race links
 race_titles <- race_table[[1]]  
 raw_links <- webpage |>
-  html_element(css = "#mw-content-text > div.mw-content-ltr.mw-parser-output > table:nth-child(39)") |>
+  html_element(css = "#mw-content-text > div.mw-content-ltr.mw-parser-output > table:nth-child(23)") |>
   html_elements("th > a[href^='/wiki/']") |>
   html_attr("href") 
 
@@ -34,6 +33,8 @@ race_data <- tibble(
   TopWords = vector("list", 54)
 )
 
+# Cleaning the text body extracted from Wikipedia ==============================
+
 for (i in 1:54) {
   
   # Extract raw text from the page
@@ -43,7 +44,7 @@ for (i in 1:54) {
     html_nodes("#mw-content-text > .mw-parser-output > p")|>
     html_text2()
   
-  # Remove references and numbers
+  # Remove references, numbers and irrelevant words
   clean_text <- str_replace_all(text, "\\[\\d+\\]", "")
   clean_text <- str_replace_all(clean_text, "\\d+", "")
   clean_text <- str_replace_all(clean_text, "\\b\\w*rac\\w*\\b", "") # Removing words containing race as stem word
@@ -62,24 +63,22 @@ for (i in 1:54) {
   clean_text <- str_replace_all(clean_text, "\\b\\w*Formula\\w*\\b", "")
   clean_text <- str_replace_all(clean_text, "\\b\\w*championship\\w*\\b", "") # Removing words containing championship as stem word
   clean_text <- str_replace_all(clean_text, "\\b\\w*Championship\\w*\\b", "") # Removing words containing championship as stem word
-  clean_text <- str_replace_all(clean_text, "\\b\\w*event\\w*\\b", "") # Removing the word 'event'
-  clean_text <- str_replace_all(clean_text, "\\b\\w*Event\\w*\\b", "")
-  clean_text <- str_replace_all(clean_text, "\\b\\w*drive\\w*\\b", "") # Removing the word 'drive'
   
   # Combine the text into a single string and save it to the data frame
   race_data$CleanText[i] <- paste(clean_text, collapse = " ")
   
 }
  
-# Use the custom palette resembling F1 colors
+
+# Create a vector to store information to make word cloud =====================
+
+# Custom F1-themed palette
 f1_palette <- c('palevioletred1', 
                 'orange', 
                 'red1', 
                 'steelblue1', 
                 'navyblue')
 
-
-# Extract the clean text for the current race
 for (i in 1:54) {
   
   # Extract the clean text for the current race
@@ -102,33 +101,12 @@ for (i in 1:54) {
   top_words <- word_counts |>
     slice_head(n = 30)
   
-  # Assigning colors to each word according to custom palette
   top_words <- top_words |> 
     mutate(color_group = sample(f1_palette, size = nrow(top_words), replace = TRUE))
   
   # Save the top words as a list 
   race_data$TopWords[[i]] <- top_words
 }
-
-# Will delete this section later after adding it directly to the blog ==========
-
-
-# Choosing which race to make a word cloud out of by changing the value of i
-
-i<- 11
-top_words = race_data$TopWords[[i]]
-set.seed(53)
-angles45 <- sample(45 * -2:2, nrow(top_words), replace = TRUE, prob = c(0.2, 0.1, 0.4, 0.1, 0.2))
-
-
-# Create the word cloud
-p <- ggplot(top_words, aes(label = word, size = n, color = color_group, angle = angles45)) +
-  geom_text_wordcloud(seed = 53, shape = "triangle-upright", eccentricity = 0.8, family = "sans") +
-  scale_size_area(max_size = 15) +
-  scale_color_identity() +
-  theme_minimal() +
-  labs(title = paste("Word Cloud for", race_data$RaceTitle[i]))
-
 
 
 # Saving the race data table
